@@ -1,16 +1,4 @@
-var QUESTION_ARRAY = [
-    {
-        key:0,
-        question:"this is my question",
-        text:"this is description",
-        responses:[
-            {
-                user:"Bhavuk",
-                text:"This is solution"
-            }
-        ]
-    }
-]
+var QUESTION_ARRAY = []
 
 var doubtArea                = document.getElementById('doubtArea'),
     questionArea             = document.getElementById('questionArea'),
@@ -36,6 +24,7 @@ var QUESTION_LENGTH = QUESTION_ARRAY.length,
     responseOpen    = false;
 
 responseArea.style.display = "none"
+getFromLocalStorage()
 addQuestions()
 
 // functions
@@ -105,32 +94,35 @@ function toggelRight(){
     responseTextDisplay.innerText = this.children[1].innerText 
     addResponse(this.dataset.key)
     
-    
 }
 
 // event Listners
 doubtButton.addEventListener('click',function(){
     if(doubtQuestion.value && doubtText.value){
-        QUESTION_ARRAY.push(
-            {
-                key: QUESTION_LENGTH,
-                question:doubtQuestion.value,
-                text:doubtText.value,
-                responses:[]
-            }
-        )
+        var obj = {
+            key: QUESTION_LENGTH,
+            question:doubtQuestion.value,
+            text:doubtText.value,
+            responses:[]
+        }
+    
+        QUESTION_ARRAY.push(obj)
         QUESTION_LENGTH++
         addQuestions()
+        addTOLocalStorage(obj)
     }
 })
     
 responseButton.addEventListener("click",function(){
     if(responseQuestion.value && responseText.value){
-        QUESTION_ARRAY[responseArea.dataset.key].responses.push({
+        var obj = {
             text:responseQuestion.value,
             user:responseText.value
-        })
-        addResponse(responseArea.dataset.key)
+        }
+        QUESTION_ARRAY[responseArea.dataset.key].responses.push(obj)
+        var key = responseArea.dataset.key
+        addResponse(key)
+        addTOLocalStorage(obj,false,key)
     }
 })
     
@@ -159,3 +151,40 @@ search.addEventListener("input",function(){
     })
     addQuestions(searchResult)
 })
+
+// local storage
+
+function addTOLocalStorage(obj,que = true,key=-1){
+    var arr = localStorage.getItem('QUESTION_ARRAY')
+    arr = JSON.parse(arr)
+    if(que){
+        arr.push(obj)
+    }
+    else{
+        if(key === -1){
+            alert("unexpected error try contacting developer");
+            location.reload()
+            return
+        }
+        else{
+            arr[key].responses.push(obj)
+        }
+    }
+    arr = JSON.stringify(arr)
+    localStorage.setItem('QUESTION_ARRAY',arr)
+
+    addQuestions()
+}
+
+function getFromLocalStorage(){
+    var arr = localStorage.getItem('QUESTION_ARRAY')
+    if(arr){
+        arr = JSON.parse(arr)
+        QUESTION_ARRAY = arr
+    }
+    else{
+        var arr = []
+        arr = JSON.stringify(arr)
+        localStorage.setItem('QUESTION_ARRAY',arr)
+    }
+}
