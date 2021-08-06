@@ -126,20 +126,11 @@ doubtButton.addEventListener('click',function(){
     
 responseButton.addEventListener("click",function(){
     if(responseQuestion.value && responseText.value){
-        var div = document.createElement('div')
-        div.className = "bg-light px-3 py-2"
-        
-        div.addEventListener("click",toggelRight)
-        
-        var h5 = document.createElement('h6')
-        h5.innerText = responseQuestion.value
-        
-        var p = document.createElement('p')
-        p.innerText = responseText.value
-        
-        div.appendChild(h5)
-        div.appendChild(p)
-        responses.appendChild(div)
+        QUESTION_ARRAY[responseArea.dataset.key].responses.push({
+            text:responseQuestion.value,
+            user:responseText.value
+        })
+        addResponse(responseArea.dataset.key)
     }
 })
     
