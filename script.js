@@ -136,6 +136,7 @@ resolve.addEventListener("click",function(){
     for(var i=responseArea.dataset.key;i<QUESTION_LENGTH;i++){
         QUESTION_ARRAY[i].key = i
     }
+    deleteFromLocalStorage()
     addQuestions()
 })
 
@@ -153,6 +154,19 @@ search.addEventListener("input",function(){
 })
 
 // local storage
+
+function getFromLocalStorage(){
+    var arr = localStorage.getItem('QUESTION_ARRAY')
+    if(arr){
+        arr = JSON.parse(arr)
+        QUESTION_ARRAY = arr
+    }
+    else{
+        var arr = []
+        arr = JSON.stringify(arr)
+        localStorage.setItem('QUESTION_ARRAY',arr)
+    }
+}
 
 function addTOLocalStorage(obj,que = true,key=-1){
     var arr = localStorage.getItem('QUESTION_ARRAY')
@@ -176,15 +190,6 @@ function addTOLocalStorage(obj,que = true,key=-1){
     addQuestions()
 }
 
-function getFromLocalStorage(){
-    var arr = localStorage.getItem('QUESTION_ARRAY')
-    if(arr){
-        arr = JSON.parse(arr)
-        QUESTION_ARRAY = arr
-    }
-    else{
-        var arr = []
-        arr = JSON.stringify(arr)
-        localStorage.setItem('QUESTION_ARRAY',arr)
-    }
+function deleteFromLocalStorage(){
+    localStorage.setItem('QUESTION_ARRAY',JSON.stringify(QUESTION_ARRAY))
 }
