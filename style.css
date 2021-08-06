@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+h1.h1{
+    height: 10vh;
+}
+.searchArea{
+    height: 10vh;
+}
+#questionArea{
+    height: 80vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#doubtArea,#responseArea{
+    height: 90vh;
+}
+#doubtArea{
+    padding: 4.5em;
+}
+#responseArea{
+    padding: 1.5em 4.5em;
+}
+.question,.add_response{
+    height: 30%;
+}
+.responses{
+    max-height: 35%;
+    overflow-y: auto;
+}
+#questionArea>div,.response>div{
+    border-bottom: 1px solid gray;
+}
+.text-gray{
+    color: gray;
+}

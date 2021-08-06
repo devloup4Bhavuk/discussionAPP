@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Discussion App</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+        <link rel="stylesheet" href="./style.css">
+    </head>
+    <body>
+        <div class="container-fluid px-0">
+            <h1 class="h1 bg-info text-light px-4 py-1 m-0">Discussion Portal</h1>
+            <div class="row p-0 m-0">
+                <div class="col-md-6 bg-light p-0 m-0">
+                    <div class="searchArea bg-white w-100 p-3 border-bottom">
+                        <button class="btn btn-primary">New Question Form</button>
+                        <input type="text" id="search" class="p-1" placeholder="search question">
+                    </div>
+                    <div  id="questionArea"></div>
+                </div>
+            <div class="col-md-6 p-0 m-0">
+                <div id="doubtArea" class="">
+                    <h1>Welcome to Discussion Portal !</h1>
+                    <p>Enter a Subject and question to get Started</p>
+                    <form>
+                        <input type="text" id="doubtQuestion" placeholder="Subject" class="d-block my-1 p-1">
+                        <textarea name="" id="doubtText"  rows="5" placeholder="Question" class="d-block w-100 p-1"></textarea>
+                    </form>
+                    <div class="text-end">
+                        <button id="doubtButton" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+                <div id="responseArea" >
+                    <div class="question">
+                        <h5 class="text-gray">Question</h5>
+                        <div class="bg-light px-3 py-2">
+                            <h6 id="responseQuestionDisplay">Json & web Storage</h6>
+                            <p id="responseTextDisplay">Lorem ipsum dolor sit.</p>
+                        </div>
+                        <div class="text-end bg-white">
+                            <button id="resolve" class="btn btn-primary my-2">Resolve</button>
+                        </div>
+                    </div>
+                    <h5 class="text-gray">Response</h5>
+                    <div class="responses pb-3">
+                        <div id="responses" class="response bg-light">
+                            
+                        </div>
+                    </div>
+                    <div class="add_response pt-3">
+                        <h5 class="text-gray">Add Response</h5>
+                        <form>
+                            <input type="text" id="responseQuestion" placeholder="Enter Name" class="d-block my-1 p-1">
+                            <textarea name="" id="responseText"  placeholder="Enter Comment" class="d-block w-100 p-1"></textarea>
+                        </form>
+                        <div class="text-end bg-white">
+                            <button id="responseButton" class="btn btn-primary my-2">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
+</body>
+</html>
